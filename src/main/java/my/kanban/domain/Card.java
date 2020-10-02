@@ -26,16 +26,14 @@
  */
 package my.kanban.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
+@Table(name = "CARDS")
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Card description cannot be blank.")
@@ -45,6 +43,7 @@ public class Card {
     @NotNull(message = "Card column cannot be null.")
     @Min(value = 0, message = "Card column cannot be less than 0.")
     @Max(value = 3, message = "Card column cannot be more than 3.")
+    @Column(name = "_COLUMN")
     private Integer column;
 
     public Long getId() {
